@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Formal Competency Certification</title>
+    <style>
+        body { font-family: 'Times New Roman', serif; padding: 40px; background: #eee; }
+        .cert-container { background: white; padding: 50px; border: 10px double #2c3e50; max-width: 800px; margin: auto; }
+        .sig-block { display: flex; justify-content: space-between; margin-top: 50px; border-top: 1px solid #000; padding-top: 10px; }
+        .hidden-input { display: none; }
+        @media print { .no-print { display: none; } }
+    </style>
+</head>
+<body>
+
+<div class="cert-container" id="certReport">
+    <h1 style="text-align:center;">CERTIFICATE OF PROFESSIONAL COMPETENCY</h1>
+    <p>This is to certify that the individual named below has completed the assessment for:</p>
+    <h2 id="certCompetency" style="text-align:center;"></h2>
+    
+    <p><strong>Candidate Name:</strong> <span id="certName"></span></p>
+    
+    <table style="width:100%; border:1px solid #ccc; margin: 20px 0;">
+        <tr><td style="padding:10px;">Overall Band Score:</td><td id="certBand" style="font-weight:bold;"></td></tr>
+        <tr><td style="padding:10px;">Predicate:</td><td id="certStatus" style="font-weight:bold;"></td></tr>
+    </table>
+
+    <div class="sig-block">
+        <div><strong>Assessor Signature:</strong><br><br>____________________</div>
+        <div><strong>Date:</strong><br><br><span id="certDate"></span></div>
+    </div>
+</div>
+
+<div class="no-print" style="text-align:center; margin-top:20px;">
+    <button onclick="window.print()" style="padding:15px; background:#2c3e50; color:white; border:none; cursor:pointer;">Print Official Certificate</button>
+</div>
+
+<script>
+// Retrieve data passed from the Audit Engine
+window.onload = function() {
+    document.getElementById('certName').innerText = localStorage.getItem('cName') || "N/A";
+    document.getElementById('certCompetency').innerText = localStorage.getItem('cComp') || "Professional Proficiency";
+    document.getElementById('certBand').innerText = localStorage.getItem('finalBand') || "N/A";
+    document.getElementById('certStatus').innerText = localStorage.getItem('certStatus') || "N/A";
+    document.getElementById('certDate').innerText = new Date().toLocaleDateString();
+}
+</script>
+</body>
+</html>
